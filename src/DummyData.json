@@ -1,0 +1,18 @@
+{
+  "clothes": [
+    {
+      "id": "1",
+      "name": "top 1",
+      "category": "top",
+      "seasons": ["Winter", "Fall"],
+      "image": "https://images.urbndata.com/is/image/UrbanOutfitters/100887306_049_b?$xlarge$&fit=constrain&fmt=webp&qlt=80&wid=1314"
+    },
+    {
+      "id": "2",
+      "name": "bottom 1",
+      "category": "bottom",
+      "seasons": ["Winter", "Fall"],
+      "image": "https://images.urbndata.com/is/image/UrbanOutfitters/90089046_001_b?$xlarge$&fit=constrain&fmt=webp&qlt=80&wid=1314"
+    }
+  ]
+}

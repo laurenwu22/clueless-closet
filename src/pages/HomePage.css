@@ -1,3 +1,19 @@
 html {
-    background-color: #F2F9FF;
+  background-color: #f2f9ff;
+}
+
+.page-container {
+  display: flex;
+  margin-top: 36px;
+  place-content: center;
+  gap: 86px;
+  width: 100%;
+}
+
+.clothes-container {
+  display: flex;
+  width: 796px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
 }

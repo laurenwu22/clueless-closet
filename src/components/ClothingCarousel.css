@@ -1,0 +1,29 @@
+.carousel-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 28px;
+  align-self: stretch;
+}
+
+.center-photo {
+  width: 204px;
+  height: 181px;
+  border-radius: 12px;
+  background: #dde4eb;
+  box-shadow: 0 4px 11.2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.side-photo {
+  width: 177px;
+  height: 158px;
+  border-radius: 12px;
+  background: #dde4eb;
+}
+
+.arrow {
+  fill: pink;
+}
+.arrow:hover {
+  cursor: pointer;
+  fill: pink;
+}
