@@ -1,22 +1,15 @@
-import { useState } from "react";
 import { BrowserRouter, Link } from "react-router-dom";
 import "./Header.css";
 import hanger from "../images/hanger.svg";
 import dropdown from "../images/dropdown.svg";
 import plus from "../images/plus.svg";
 
-export enum Seasons {
-  Winter,
-  Spring,
-  Summer,
-  Fall,
-}
+type HeaderProps = {
+    season: string;
+    page?: string;
+  };
 
-export default function Header() {
-  /* Find the current season and set as state variable */
-  const month: number = new Date().getMonth();
-  const currSzn: number = Math.floor(month / 3);
-  const [season, setSeason] = useState(Seasons[currSzn]);
+export default function Header({ season } : HeaderProps) {
 
   return (
     <div className="navbar">

@@ -11,6 +11,7 @@
   border-radius: 12px;
   background: #dde4eb;
   box-shadow: 0 4px 11.2px 4px rgba(0, 0, 0, 0.25);
+  object-fit: cover;
 }
 
 .side-photo {
@@ -18,6 +19,7 @@
   height: 158px;
   border-radius: 12px;
   background: #dde4eb;
+  object-fit: cover;
 }
 
 .arrow {

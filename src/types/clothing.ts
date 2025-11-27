@@ -1,6 +1,6 @@
 export type Category = "top" | "bottom";
 
-export type Season = "winter" | "spring" | "summer" | "fall";
+export type Season = "Winter" | "Spring" | "Summer" | "Fall";
 
 export interface ClothingItem {
   id: string;
