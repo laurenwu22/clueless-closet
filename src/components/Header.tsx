@@ -5,12 +5,11 @@ import dropdown from "../images/dropdown.svg";
 import plus from "../images/plus.svg";
 
 type HeaderProps = {
-    season: string;
-    page?: string;
-  };
+  season: string;
+  page?: string;
+};
 
-export default function Header({ season } : HeaderProps) {
-
+export default function Header({ season }: HeaderProps) {
   return (
     <div className="navbar">
       <div className="title">

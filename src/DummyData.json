@@ -15,32 +15,32 @@
       "image": "https://images.urbndata.com/is/image/UrbanOutfitters/90089046_001_b?$xlarge$&fit=constrain&fmt=webp&qlt=80&wid=1314"
     },
     {
-        "id": "3",
-        "name": "top 2",
-        "category": "top",
-        "seasons": ["Winter", "Fall"],
-        "image": "https://us.princesspolly.com/cdn/shop/products/1-model-info-Josephine-us2_91c54224-b6ac-45f1-bea6-e2f6367d332f.jpg?v=1700543705&width=1800"
+      "id": "3",
+      "name": "top 2",
+      "category": "top",
+      "seasons": ["Winter", "Fall"],
+      "image": "https://us.princesspolly.com/cdn/shop/products/1-model-info-Josephine-us2_91c54224-b6ac-45f1-bea6-e2f6367d332f.jpg?v=1700543705&width=1800"
     },
     {
-        "id": "4",
-        "name": "bottom 2",
-        "category": "bottom",
-        "seasons": ["Winter", "Fall"],
-        "image": "https://us.princesspolly.com/cdn/shop/files/1-modelinfo-olivia-us2_0b84680e-661b-4d02-96e2-6c73d7560d38_639x866_crop_center.jpg?v=1764132672"
+      "id": "4",
+      "name": "bottom 2",
+      "category": "bottom",
+      "seasons": ["Winter", "Fall"],
+      "image": "https://us.princesspolly.com/cdn/shop/files/1-modelinfo-olivia-us2_0b84680e-661b-4d02-96e2-6c73d7560d38_639x866_crop_center.jpg?v=1764132672"
     },
     {
-        "id": "5",
-        "name": "top 3",
-        "category": "top",
-        "seasons": ["Winter", "Fall"],
-        "image": "https://us.princesspolly.com/cdn/shop/files/1-modelinfo-olivia-us2_e29b5116-9516-4ba9-9006-0d281b1faad7.jpg?v=1764131462&width=1800"
+      "id": "5",
+      "name": "top 3",
+      "category": "top",
+      "seasons": ["Winter", "Fall"],
+      "image": "https://us.princesspolly.com/cdn/shop/files/1-modelinfo-olivia-us2_e29b5116-9516-4ba9-9006-0d281b1faad7.jpg?v=1764131462&width=1800"
     },
     {
-        "id": "6",
-        "name": "bottom 3",
-        "category": "bottom",
-        "seasons": ["Winter", "Fall"],
-        "image": "https://us.princesspolly.com/cdn/shop/files/1-modelinfo-olivia-us2_0618133f-371d-489a-8c12-c2fe172b0505_639x866_crop_center.jpg?v=1764214576"
+      "id": "6",
+      "name": "bottom 3",
+      "category": "bottom",
+      "seasons": ["Winter", "Fall"],
+      "image": "https://us.princesspolly.com/cdn/shop/files/1-modelinfo-olivia-us2_0618133f-371d-489a-8c12-c2fe172b0505_639x866_crop_center.jpg?v=1764214576"
     }
   ]
 }

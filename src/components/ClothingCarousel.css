@@ -18,8 +18,12 @@
   width: 177px;
   height: 158px;
   border-radius: 12px;
-  background: #dde4eb;
+  background: #1b263b;
   object-fit: cover;
+}
+
+.side-photo:hover {
+  cursor: pointer;
 }
 
 .arrow {
@@ -28,4 +32,9 @@
 .arrow:hover {
   cursor: pointer;
   fill: pink;
+}
+
+.disabled {
+  opacity: 30%;
+  cursor: default !important;
 }
