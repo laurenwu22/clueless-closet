@@ -3,9 +3,12 @@ import "./AddItem.css";
 import image from "../images/img.svg";
 import shirt from "../images/shirt.svg";
 import { useState, type ChangeEvent } from "react";
+import { addClothes } from "../utils/db";
+import type { ClothingItem } from "../types/clothing";
 
 export default function AddItem() {
   const [imgURL, setimgURL] = useState<string | null>(null);
+  const [desc, setDesc] = useState<string>("");
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -18,6 +21,17 @@ export default function AddItem() {
       setimgURL(event.target.value);
     }
   };
+
+  const submitItem = async () => {
+    const dummyData : ClothingItem = {
+        "id": "1",
+        "name": "top 1",
+        "category": "top",
+        "seasons": ["Winter", "Fall"],
+        "image": "https://images.urbndata.com/is/image/UrbanOutfitters/100887306_049_b?$xlarge$&fit=constrain&fmt=webp&qlt=80&wid=1314"
+    }
+    await addClothes(dummyData);
+  }
 
   return (
     <div>
@@ -64,6 +78,7 @@ export default function AddItem() {
               type="text"
               id="description"
               placeholder="Ex: floral sundress"
+              onChange={(e) => setDesc(e.currentTarget.value)}
             />
           </label>
           <div className="categories">
@@ -81,7 +96,7 @@ export default function AddItem() {
             <p>Seasons</p>
             <label>
               <input type="checkbox" name="category" value="Winter" />
-              Top
+              Winter
             </label>
             <label>
               <input type="checkbox" name="category" value="Spring" />
@@ -96,7 +111,7 @@ export default function AddItem() {
               Fall
             </label>
           </div>
-          <div className="save-btn">
+          <div className="save-btn" onClick={submitItem}>
             <img src={shirt} />
             Save Item
           </div>

@@ -85,8 +85,8 @@ input[type="text"] {
 }
 
 .img-preview {
-  width: 204px;
-  height: 181px;
+  width: 160px;
+  height: 160px;
   object-fit: cover;
 }
 

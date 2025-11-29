@@ -96,3 +96,25 @@
   width: 18px;
   height: 18px;
 }
+
+.txt-btn {
+  color: #1b263b;
+  font-family: "DM Sans";
+  font-size: 18px;
+  font-weight: 400;
+  grid-row: 1 / span 1;
+  grid-column: 3 / span 1;
+  margin-right: 24px;
+
+  a {
+    display: inline-flex;
+    text-decoration: none;
+    color: #1b263b;
+    place-items: center;
+    gap: 4px;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}

@@ -25,6 +25,9 @@ export default function Header({ season, page }: HeaderProps) {
             <img src={dropdown} />
             {season} Season
           </div>
+          <div className="txt-btn">
+            <Link to="/all-outfits">All Outfits</Link>
+          </div>
           <div className="pink button">
             <Link to="/add-item">
               <img src={plus} className="plus" />

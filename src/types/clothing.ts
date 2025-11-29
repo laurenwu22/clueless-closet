@@ -7,5 +7,5 @@ export interface ClothingItem {
   name: string;
   category: Category;
   seasons: Season[];
-  image?: string;
+  image: string;
 }
