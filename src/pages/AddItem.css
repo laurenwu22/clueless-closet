@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+
+.add-form {
+  display: flex;
+  padding: 32px 132px;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 4px 8px 1px rgba(0, 0, 0, 0.25);
+  width: fit-content;
+  justify-self: center;
+  margin: 32px 0 56px;
+}
+
+h1 {
+  color: #1b263b;
+  text-align: center;
+  font-family: "DM Sans";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.img-btn {
+  display: flex;
+  height: fit-content;
+  padding: 16px 48px;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 6px;
+  background: #a2d2ff;
+  border: solid transparent;
+
+  img {
+    width: 32px;
+  }
+}
+
+.img-btn:hover {
+  cursor: pointer;
+  background-color: transparent;
+  border: solid #1b263b;
+}
+
+.btn-container {
+  display: flex;
+  width: 400px;
+  flex-direction: column;
+  align-items: center;
+  gap: 17px;
+
+  p {
+    flex-shrink: 0;
+    color: #1b263b;
+    text-align: center;
+    font-family: "DM Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 4px 0;
+  }
+}
+
+input[type="text"] {
+  align-self: stretch;
+  border-radius: 4px;
+  border: solid #1b263b;
+  background: #fff;
+  padding: 2px 8px;
+  font-family: "DM Sans";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.txt-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.img-preview {
+  width: 204px;
+  height: 181px;
+  object-fit: cover;
+}
+
+.clickable {
+  color: #0047ab;
+  text-align: center;
+  font-family: "DM Sans";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+
+  color: #1b263b;
+  text-align: center;
+  font-family: "DM Sans";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+
+  accent-color: #e0115f;
+
+  input {
+    margin-right: 8px;
+  }
+}
+
+.save-btn {
+  display: inline-flex;
+  padding: 12px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  height: fit-content;
+
+  color: #1b263b;
+  background-color: #ffa6be;
+  text-align: center;
+  font-family: "DM Sans";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: 100px;
+}
+
+.save-btn:hover {
+  cursor: pointer;
+  background-color: transparent;
+  border-color: #1b263b;
+}

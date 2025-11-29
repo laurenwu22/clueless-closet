@@ -38,3 +38,8 @@
   opacity: 30%;
   cursor: default !important;
 }
+
+.transparent {
+  opacity: 0%;
+  cursor: default !important;
+}

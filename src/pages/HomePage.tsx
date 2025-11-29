@@ -28,7 +28,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <Header season={season} />
+      <Header season={season} page="home" />
       <div className="page-container">
         <div className="clothes-container">
           <ClothingCarousel clothes={tops} />

@@ -61,7 +61,6 @@
   font-weight: 400;
   line-height: normal;
   border-style: solid;
-  border-radius: 2px;
   border-color: transparent;
   border-radius: 100px;
 
@@ -91,10 +90,9 @@
   grid-row: 1 / span 1;
   grid-column: 3 / span 1;
   margin-right: 24px;
+}
 
-  img {
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
-  }
+.plus {
+  width: 18px;
+  height: 18px;
 }
