@@ -1,4 +1,4 @@
-import { BrowserRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Header.css";
 import hanger from "../images/hanger.svg";
 import dropdown from "../images/dropdown.svg";

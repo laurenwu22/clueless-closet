@@ -5,6 +5,8 @@ import shirt from "../images/shirt.svg";
 import { useState, type ChangeEvent } from "react";
 import { addClothes } from "../utils/db";
 import { type Category, type ClothingItem, type Season } from "../types/clothing";
+import check from "../images/check.svg"
+import { Link } from "react-router-dom";
 
 export default function AddItem() {
   const [imgURL, setimgURL] = useState<string | null>(null);
@@ -13,6 +15,7 @@ export default function AddItem() {
   const [seasons, setSeasons] = useState<Season[]>([]);
   const [category, setCategory] = useState<Category>("top");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitted, setSubmitted] = useState<Boolean>(false);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -22,8 +25,10 @@ export default function AddItem() {
   };
 
   const handleLinkChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setimgURL(event.target.value);
-    setImg(event.target.value);
+    if (event.target.value) {
+        setimgURL(event.target.value);
+        setImg(event.target.value);
+    }
   };
 
   const handleSeasonCheck = (event: ChangeEvent<HTMLInputElement>) => {
@@ -55,15 +60,33 @@ export default function AddItem() {
       "image": img!
     }
     await addClothes(newClothing);
-    // console.log("description:", desc, "category:", category, "image:", img, "seasons", seasons);
-    console.log("Success");
+    setSubmitted(true);
   };
 
   return (
     <div>
       <Header page="add" />
       <div className="add-form">
-        <h1>Add Clothing Item</h1>
+        {submitted ?
+        <div className="submitted">
+            <img src={check}/>
+            <p><i>{desc}</i></p>
+            <p>sucessfully added</p>
+            <div className="btns">
+                <Link to="/">
+                <div className="blue btn">
+                    Return Home
+                </div>
+                </Link>
+                <Link to="/add-item" reloadDocument>
+                <div className="pink btn">
+                    Add New Item
+                </div>
+                </Link>
+            </div>
+        </div>
+        :
+        <>
         <div className="btn-container">
           {imgURL === null ? (
             <>
@@ -174,11 +197,13 @@ export default function AddItem() {
               Fall
             </label>
           </div>
-          <div className="save-btn" onClick={submitItem}>
+          <div className="pink btn" onClick={submitItem}>
             <img src={shirt} />
             Save Item
           </div>
         </div>
+        </>
+        }
       </div>
     </div>
   );

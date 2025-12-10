@@ -121,7 +121,7 @@ input[type="text"] {
   }
 }
 
-.save-btn {
+.btn {
   display: inline-flex;
   padding: 12px 24px;
   justify-content: center;
@@ -131,7 +131,7 @@ input[type="text"] {
   height: fit-content;
 
   color: #1b263b;
-  background-color: #ffa6be;
+  
   text-align: center;
   font-family: "DM Sans";
   font-size: 18px;
@@ -141,9 +141,17 @@ input[type="text"] {
   border-style: solid;
   border-color: transparent;
   border-radius: 100px;
+
+  .blue {
+    background: #A2D2FF;
+  }
+
+  .pink {
+    background-color: #ffa6be;
+  }
 }
 
-.save-btn:hover {
+.btn:hover {
   cursor: pointer;
   background-color: transparent;
   border-color: #1b263b;
@@ -156,4 +164,34 @@ input[type="text"] {
   font-style: italic;
   font-weight: 400;
   line-height: normal;
+}
+
+.submitted {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    p{
+        color: #1B263B;
+        text-align: center;
+        font-family: "DM Sans";
+        font-size: 24px;
+        font-weight: 600;
+        line-height: normal;
+        margin: 0;
+    }
+
+    img {
+        width: 32px;
+        margin: 24px 0 12px;
+    }
+
+    .btns {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 16px;
+        margin-top: 18px;
+    }
 }
