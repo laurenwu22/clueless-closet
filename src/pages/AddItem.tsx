@@ -4,34 +4,60 @@ import image from "../images/img.svg";
 import shirt from "../images/shirt.svg";
 import { useState, type ChangeEvent } from "react";
 import { addClothes } from "../utils/db";
-import type { ClothingItem } from "../types/clothing";
+import { type Category, type ClothingItem, type Season } from "../types/clothing";
 
 export default function AddItem() {
   const [imgURL, setimgURL] = useState<string | null>(null);
-  const [desc, setDesc] = useState<string>("");
+  const [img, setImg] = useState<File | string | null>(null);
+  const [desc, setDesc] = useState<string | null>(null);
+  const [seasons, setSeasons] = useState<Season[]>([]);
+  const [category, setCategory] = useState<Category>("top");
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       setimgURL(URL.createObjectURL(event.target.files[0]));
+      setImg(event.target.files[0]);
     }
   };
 
   const handleLinkChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.value) {
-      setimgURL(event.target.value);
+    setimgURL(event.target.value);
+    setImg(event.target.value);
+  };
+
+  const handleSeasonCheck = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setSeasons((prev) => [...prev, value as Season]);
+    } else {
+      setSeasons((prev) => prev.filter((s) => s !== value));
     }
   };
 
+  const validateForm = () => {
+    let newErrors: { [key: string]: string } = {};
+    if (!img) newErrors.img = "Please provide an image file or link";
+    if (!desc) newErrors.desc = "Please provide a description";
+    if (seasons.length === 0)
+      newErrors.seasons = "Please select at least one season";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const submitItem = async () => {
-    const dummyData : ClothingItem = {
-        "id": "1",
-        "name": "top 1",
-        "category": "top",
-        "seasons": ["Winter", "Fall"],
-        "image": "https://images.urbndata.com/is/image/UrbanOutfitters/100887306_049_b?$xlarge$&fit=constrain&fmt=webp&qlt=80&wid=1314"
+    if (!validateForm()) return;
+    const newClothing : ClothingItem = {
+      "name": desc!,
+      "category": category,
+      "seasons": seasons,
+      "image": img!
     }
-    await addClothes(dummyData);
-  }
+    await addClothes(newClothing);
+    // console.log("description:", desc, "category:", category, "image:", img, "seasons", seasons);
+    console.log("Success");
+  };
 
   return (
     <div>
@@ -41,6 +67,7 @@ export default function AddItem() {
         <div className="btn-container">
           {imgURL === null ? (
             <>
+              {errors["img"] && <div className="error">{errors["img"]}</div>}
               <label htmlFor="add-image" className="img-btn">
                 <input
                   type="file"
@@ -73,7 +100,9 @@ export default function AddItem() {
             </>
           )}
           <label htmlFor="description" className="txt-container">
+            {errors["desc"] && <div className="error">{errors["desc"]}</div>}
             <p>Description</p>
+
             <input
               type="text"
               id="description"
@@ -84,30 +113,64 @@ export default function AddItem() {
           <div className="categories">
             <p>Category</p>
             <label>
-              <input type="radio" name="category" value="Top" />
+              <input
+                type="radio"
+                name="category"
+                value="Top"
+                defaultChecked
+                onClick={() => setCategory("top")}
+              />
               Top
             </label>
             <label>
-              <input type="radio" name="category" value="Bottom" />
+              <input
+                type="radio"
+                name="category"
+                value="Bottom"
+                onClick={() => setCategory("bottom")}
+              />
               Bottom
             </label>
           </div>
           <div className="categories">
+            {errors["seasons"] && (
+              <div className="error">{errors["seasons"]}</div>
+            )}
             <p>Seasons</p>
             <label>
-              <input type="checkbox" name="category" value="Winter" />
+              <input
+                type="checkbox"
+                name="category"
+                value="Winter"
+                onChange={handleSeasonCheck}
+              />
               Winter
             </label>
             <label>
-              <input type="checkbox" name="category" value="Spring" />
+              <input
+                type="checkbox"
+                name="category"
+                value="Spring"
+                onChange={handleSeasonCheck}
+              />
               Spring
             </label>
             <label>
-              <input type="checkbox" name="category" value="Summer" />
+              <input
+                type="checkbox"
+                name="category"
+                value="Summer"
+                onChange={handleSeasonCheck}
+              />
               Summer
             </label>
             <label>
-              <input type="checkbox" name="category" value="Fall" />
+              <input
+                type="checkbox"
+                name="category"
+                value="Fall"
+                onChange={handleSeasonCheck}
+              />
               Fall
             </label>
           </div>

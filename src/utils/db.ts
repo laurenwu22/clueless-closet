@@ -39,21 +39,22 @@ export const addClothes = async (data: ClothingItem): Promise<void> => {
 };
 
 // Retrieve all items from database
-export const getAllItems = async (storeName: string): Promise<ClothingItem[]> => 
-{
-    const db = await openDB();
-    const transaction: IDBTransaction = db.transaction(storeName, 'readonly');
-    const store = transaction.objectStore(storeName);
+export const getAllItems = async (
+  storeName: string,
+): Promise<ClothingItem[]> => {
+  const db = await openDB();
+  const transaction: IDBTransaction = db.transaction(storeName, "readonly");
+  const store = transaction.objectStore(storeName);
 
-    const request = store.getAll();
+  const request = store.getAll();
 
-    return new Promise<ClothingItem[]>((resolve, reject) => {
-      request.onsuccess = () => {
-        resolve(request.result as ClothingItem[]);
-      };
-  
-      request.onerror = () => {
-        reject(`Error retrieving items: ${request.error}`);
-      };
-    });
-}
+  return new Promise<ClothingItem[]>((resolve, reject) => {
+    request.onsuccess = () => {
+      resolve(request.result as ClothingItem[]);
+    };
+
+    request.onerror = () => {
+      reject(`Error retrieving items: ${request.error}`);
+    };
+  });
+};

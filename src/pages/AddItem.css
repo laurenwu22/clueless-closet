@@ -148,3 +148,12 @@ input[type="text"] {
   background-color: transparent;
   border-color: #1b263b;
 }
+
+.error {
+  color: #e0115f;
+  font-family: "DM Sans";
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: normal;
+}
