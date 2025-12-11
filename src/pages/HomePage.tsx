@@ -40,7 +40,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <Header season={season} page="home" />
+      <Header season={season} page="home" setSeason={setSeason} />
       <div className="page-container">
         <div className="clothes-container">
           {tops.length > 0 && <ClothingCarousel clothes={tops} />}
