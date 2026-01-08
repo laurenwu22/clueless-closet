@@ -3,17 +3,22 @@ import leftArrow from "../images/left-arrow.svg";
 import rightArrow from "../images/right-arrow.svg";
 import type { ClothingItem } from "../types/clothing";
 import { useEffect, useState } from "react";
+import { BounceLoader } from "react-spinners";
 
 interface CarouselProps {
   clothes: ClothingItem[];
-  index?: number;
+  index: number;
+  setIndex: React.Dispatch<React.SetStateAction<number>>;
   locked?: boolean;
 }
 
-export default function ClothingCarousel({ clothes }: CarouselProps) {
+export default function ClothingCarousel({
+  clothes,
+  index,
+  setIndex,
+}: CarouselProps) {
   // State var to track current clothing index
   const numClothes: number = clothes.length;
-  const [index, setIndex] = useState(() => (numClothes === 1 ? 0 : 1));
   const [urls, setUrls] = useState<string[]>([]);
 
   useEffect(() => {
@@ -26,6 +31,14 @@ export default function ClothingCarousel({ clothes }: CarouselProps) {
     });
     setUrls(urlSet);
   }, [clothes]);
+
+  if (!clothes.length || !urls.length) {
+    return (
+      <div className="carousel-container">
+        <BounceLoader />
+      </div>
+    );
+  }
 
   return (
     <div className="carousel-container">

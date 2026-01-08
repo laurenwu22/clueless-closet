@@ -1,0 +1,51 @@
+.image {
+  width: 180px;
+  height: 180px;
+  border-radius: 12px;
+  background: #dde4eb;
+  object-fit: cover;
+}
+
+.outfit-container {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 12px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  padding: 12px;
+  box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.2);
+}
+
+.loader-container {
+  width: 200px;
+}
+
+.overlay {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  inset: 0;
+  display: flex;
+  transition: opacity 0.2s ease;
+  border-radius: 16px;
+  opacity: 0;
+
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+.overlay.visible {
+  opacity: 1;
+}
+
+.hover-btn {
+    width: 36px;
+    height: 36px;
+}
+
+.hover-btn:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}

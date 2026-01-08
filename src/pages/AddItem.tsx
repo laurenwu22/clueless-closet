@@ -3,7 +3,7 @@ import "./AddItem.css";
 import image from "../images/img.svg";
 import shirt from "../images/shirt.svg";
 import { useState, type ChangeEvent } from "react";
-import { addClothes } from "../utils/db";
+import { addData } from "../utils/db";
 import {
   type Category,
   type ClothingItem,
@@ -63,7 +63,7 @@ export default function AddItem() {
       seasons: seasons,
       image: img!,
     };
-    await addClothes(newClothing);
+    await addData(newClothing, "clothes");
     setSubmitted(true);
   };
 

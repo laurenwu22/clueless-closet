@@ -1,0 +1,9 @@
+.outfit-row {
+  display: flex;
+  place-content: center;
+  gap: 64px;
+  place-self: center;
+  padding: 56px 0;
+  width: 80%;
+  flex-wrap: wrap;
+}
