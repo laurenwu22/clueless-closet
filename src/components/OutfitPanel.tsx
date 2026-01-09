@@ -3,22 +3,32 @@ import { getItem } from "../utils/db";
 import { useEffect, useState } from "react";
 import "./OutfitPanel.css";
 import { BounceLoader } from "react-spinners";
-import Trash from "../images/trash.svg"
+import Trash from "../images/trash.svg";
 
-export default function OutfitPanel({ ids }: { ids: number[] }) {
+interface OutfitPanelProps {
+  id: number;
+  ids: number[];
+  onDelete: (id: number) => void;
+}
+
+export default function OutfitPanel({ id, ids, onDelete }: OutfitPanelProps) {
   const [loading, setLoading] = useState<boolean>(true);
   const [items, setItems] = useState<ClothingItem[]>([]);
   const [hovering, setHovering] = useState<boolean>(false);
 
-  useEffect(() => {
-    const loadItems = async () => {
-      const result: ClothingItem[] = await Promise.all(
-        ids.map(async (id) => await getItem<ClothingItem>("clothes", id)),
-      );
-      setItems(result);
-    };
-    loadItems();
+  const loadItems = async () => {
+    setLoading(true);
+
+    const result = await Promise.all(
+      ids.map((id) => getItem<ClothingItem>("clothes", id)),
+    );
+
+    setItems(result);
     setLoading(false);
+  };
+
+  useEffect(() => {
+    loadItems();
   }, [ids]);
 
   const normalizeImage = (image: File | string): string => {
@@ -41,13 +51,13 @@ export default function OutfitPanel({ ids }: { ids: number[] }) {
     >
       {items.map((item) => (
         <img
-          key={item.name}
+          key={item.id}
           src={normalizeImage(item.image)}
           className="image"
         />
       ))}
       <div className={`overlay ${hovering ? "visible" : ""}`}>
-        <img src={Trash} className="hover-btn"/>
+        <img src={Trash} className="hover-btn" onClick={() => onDelete(id)} />
       </div>
     </div>
   );

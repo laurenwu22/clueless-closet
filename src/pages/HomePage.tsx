@@ -8,6 +8,7 @@ import { type Season } from "../types/clothing";
 import type { Outfit } from "../types/outfit";
 import { BounceLoader } from "react-spinners";
 import shirt from "../images/shirt.svg";
+import Modal from "../components/Modal";
 
 export const Seasons: Season[] = ["Winter", "Spring", "Summer", "Fall"];
 
@@ -67,6 +68,7 @@ export default function HomePage() {
 
   return (
     <div>
+        <Modal />
       <Header season={season} page="home" setSeason={setSeason} />
       <div className="page-container">
         <div className="clothes-container">

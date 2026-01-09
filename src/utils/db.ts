@@ -88,3 +88,19 @@ export const getItem = async <T>(
     };
   });
 };
+
+// Delete item with matching id
+export const deleteItem = async <T>(
+  storeName: string,
+  id: IDBValidKey,
+): Promise<void> => {
+  const db = await openDB();
+  const transaction: IDBTransaction = db.transaction(storeName, "readwrite");
+  const store = transaction.objectStore(storeName);
+
+  const request = store.delete(id);
+
+  request.onerror = (event) => {
+    console.error(`Error deleting item: ${(event.target as IDBRequest).error}`);
+  };
+};

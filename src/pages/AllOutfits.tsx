@@ -7,6 +7,7 @@ import type { Season } from "../types/clothing";
 import { Seasons } from "./HomePage";
 import { BounceLoader } from "react-spinners";
 import OutfitPanel from "../components/OutfitPanel";
+import { deleteItem } from "../utils/db";
 
 export default function AllOutfits() {
   const [outfits, setOutfits] = useState<Outfit[]>([]);
@@ -26,6 +27,12 @@ export default function AllOutfits() {
     loadOutfits();
   }, []);
 
+  /* Passed to child to delete outfit from db */
+  const handleDelete = async (id: number) => {
+    await deleteItem("outfits", id);
+    setOutfits(prev => prev.filter(outfit => outfit.id !== id));
+  };
+
   /* Return loading page while clothes have not loaded */
   if (loading) {
     return (
@@ -41,7 +48,12 @@ export default function AllOutfits() {
       <Header page="home" season={season} setSeason={setSeason} />
       <div className="outfit-row">
         {outfits.map((outfit) => (
-          <OutfitPanel key={outfit.id} ids={outfit.itemIDs} />
+          <OutfitPanel
+            key={outfit.id}
+            id={outfit.id as number}
+            ids={outfit.itemIDs}
+            onDelete={handleDelete}
+          />
         ))}
       </div>
     </div>

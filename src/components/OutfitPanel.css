@@ -31,9 +31,9 @@
   opacity: 0;
 
   display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
 }
 
 .overlay.visible {
@@ -41,11 +41,11 @@
 }
 
 .hover-btn {
-    width: 36px;
-    height: 36px;
+  width: 36px;
+  height: 36px;
 }
 
 .hover-btn:hover {
-    cursor: pointer;
-    opacity: 0.8;
+  cursor: pointer;
+  opacity: 0.8;
 }
