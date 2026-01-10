@@ -4,6 +4,7 @@ import rightArrow from "../images/right-arrow.svg";
 import type { ClothingItem } from "../types/clothing";
 import { useEffect, useState } from "react";
 import { BounceLoader } from "react-spinners";
+import ClothingCard from "./ClothingCard";
 
 interface CarouselProps {
   clothes: ClothingItem[];
@@ -20,6 +21,7 @@ export default function ClothingCarousel({
   // State var to track current clothing index
   const numClothes: number = clothes.length;
   const [urls, setUrls] = useState<string[]>([]);
+  const [locked, setLocked] = useState<boolean>(false);
 
   useEffect(() => {
     const urlSet: string[] = clothes.map((c) => {
@@ -42,7 +44,7 @@ export default function ClothingCarousel({
 
   return (
     <div className="carousel-container">
-      {index > 0 ? (
+      {index > 0 && !locked ? (
         <img
           className="arrow"
           src={leftArrow}
@@ -63,10 +65,11 @@ export default function ClothingCarousel({
         <div className="transparent side-photo" />
       )}
 
-      <img
-        className="center-photo"
-        src={urls[index]}
+      <ClothingCard
+        image={urls[index]}
         alt={clothes[index].name}
+        locked={locked}
+        setLocked={setLocked}
       />
 
       {index < numClothes - 1 ? (
@@ -80,7 +83,7 @@ export default function ClothingCarousel({
         <div className="transparent side-photo" />
       )}
 
-      {index < numClothes - 1 ? (
+      {index < numClothes - 1 && !locked ? (
         <img
           className="arrow"
           src={rightArrow}

@@ -9,6 +9,7 @@
   grid-template-rows: repeat(1, minmax(0, 1fr));
   grid-template-columns: repeat(3, minmax(0, 1fr));
   place-items: center;
+  z-index: 2;
 
   :first-child {
     justify-self: start;
@@ -17,6 +18,15 @@
   :last-child {
     justify-self: end;
   }
+}
+
+.navbar .right {
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
+  align-items: center;
+  grid-row: 1 / span 1;
+  grid-column: 3 / span 1;
 }
 
 .title {
@@ -103,8 +113,6 @@
   font-family: "DM Sans";
   font-size: 18px;
   font-weight: 400;
-  grid-row: 1 / span 1;
-  grid-column: 3 / span 1;
   margin-right: 24px;
 
   a {
@@ -120,12 +128,17 @@
   }
 }
 
+.active {
+  font-weight: 800;
+}
+
 .dropdown {
   display: flex;
   width: fit-content;
   flex-direction: column;
   align-items: flex-start;
   position: relative;
+  z-index: 1;
   padding-bottom: 4px;
 
   .button {

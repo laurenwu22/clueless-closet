@@ -69,9 +69,12 @@ export default function HomePage() {
 
   return (
     <div>
-      {modal &&
-        <Modal text="Outfit successfully saved" onClose={() => setModal(false)}/>
-      }
+      {modal && (
+        <Modal
+          text="Outfit successfully saved"
+          onClose={() => setModal(false)}
+        />
+      )}
       <Header season={season} page="home" setSeason={setSeason} />
       <div className="page-container">
         <div className="clothes-container">

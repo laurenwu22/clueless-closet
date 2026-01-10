@@ -23,6 +23,8 @@ export default function AllOutfits() {
   useEffect(() => {
     async function loadOutfits() {
       const items: Outfit[] = await getAllItems<Outfit>("outfits");
+      items.reverse();
+
       setOutfits(items);
       setLoading(false);
     }
@@ -32,7 +34,7 @@ export default function AllOutfits() {
   /* Passed to child to delete outfit from db */
   const handleDelete = async (id: number) => {
     await deleteItem("outfits", id);
-    setOutfits(prev => prev.filter(outfit => outfit.id !== id));
+    setOutfits((prev) => prev.filter((outfit) => outfit.id !== id));
     setModal(true);
   };
 
@@ -40,7 +42,7 @@ export default function AllOutfits() {
   if (loading) {
     return (
       <div>
-        <Header page="home" season={season} setSeason={setSeason} />
+        <Header page="all-outfits" season={season} setSeason={setSeason} />
         <BounceLoader />
       </div>
     );
@@ -48,10 +50,13 @@ export default function AllOutfits() {
 
   return (
     <div>
-        {modal &&
-        <Modal text="Outfit successfully deleted" onClose={() => setModal(false)}/>
-        }
-      <Header page="home" season={season} setSeason={setSeason} />
+      {modal && (
+        <Modal
+          text="Outfit successfully deleted"
+          onClose={() => setModal(false)}
+        />
+      )}
+      <Header page="all-outfits" season={season} setSeason={setSeason} />
       <div className="outfit-row">
         {outfits.map((outfit) => (
           <OutfitPanel

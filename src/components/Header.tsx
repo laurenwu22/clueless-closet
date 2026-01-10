@@ -24,7 +24,7 @@ export default function Header({ season, page, setSeason }: HeaderProps) {
           <img src={hanger} />
         </Link>
       </div>
-      {page === "home" ? (
+      {page === "home" && (
         <>
           <div
             className="dropdown"
@@ -48,23 +48,47 @@ export default function Header({ season, page, setSeason }: HeaderProps) {
               </div>
             )}
           </div>
-          <div className="txt-btn">
-            <Link to="/all-outfits">All Outfits</Link>
-          </div>
-          <div className="pink button">
-            <Link to="/add-item">
-              <img src={plus} className="plus" />
-              Add Item
-            </Link>
+          <div className="right">
+            <div className="active txt-btn">
+              <Link to="/">Home</Link>
+            </div>
+            <div className="txt-btn">
+              <Link to="/all-outfits">All Outfits</Link>
+            </div>
+            <div className="pink button">
+              <Link to="/add-item">
+                <img src={plus} className="plus" />
+                Add Item
+              </Link>
+            </div>
           </div>
         </>
-      ) : (
+      )}
+      {page === "add" && (
         <>
           <div className="pink button">
             <Link to="/">
               <img src={back} />
               Back
             </Link>
+          </div>
+        </>
+      )}
+      {page === "all-outfits" && (
+        <>
+          <div className="right">
+            <div className="txt-btn">
+              <Link to="/">Home</Link>
+            </div>
+            <div className="txt-btn active">
+              <Link to="/all-outfits">All Outfits</Link>
+            </div>
+            <div className="pink button">
+              <Link to="/add-item">
+                <img src={plus} className="plus" />
+                Add Item
+              </Link>
+            </div>
           </div>
         </>
       )}

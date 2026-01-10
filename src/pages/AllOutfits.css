@@ -1,7 +1,8 @@
 .outfit-row {
-  display: flex;
-  place-content: center;
-  gap: 64px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  justify-items: center;
+  gap: 64px 0px;
   place-self: center;
   padding: 56px 0;
   width: 80%;

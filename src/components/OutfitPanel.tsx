@@ -50,11 +50,7 @@ export default function OutfitPanel({ id, ids, onDelete }: OutfitPanelProps) {
       onMouseLeave={() => setHovering(false)}
     >
       {items.map((item) => (
-        <img
-          key={item.id}
-          src={normalizeImage(item.image)}
-          className="image"
-        />
+        <img key={item.id} src={normalizeImage(item.image)} className="image" />
       ))}
       <div className={`overlay ${hovering ? "visible" : ""}`}>
         <img src={Trash} className="hover-btn" onClick={() => onDelete(id)} />
