@@ -6,16 +6,18 @@ import Unlock from "../images/unlock.svg";
 
 interface ClothingCardProps {
   image: string;
-  alt: string;
+  desc: string;
   locked: boolean;
   setLocked: React.Dispatch<React.SetStateAction<boolean>>;
+  handleDelete: () => void;
 }
 
 export default function ClothingCard({
   image,
-  alt,
+  desc,
   locked,
   setLocked,
+  handleDelete,
 }: ClothingCardProps) {
   const [hovering, setHovering] = useState<boolean>(false);
 
@@ -26,24 +28,32 @@ export default function ClothingCard({
       onMouseLeave={() => setHovering(false)}
     >
       <div className={`overlay ${hovering ? "visible" : ""}`}>
-        <img className="hover-btn" src={Trash} alt="delete item" />
-        {locked ? (
+        <div className="desc">{desc}</div>
+        <div className="overlay-actions">
           <img
             className="hover-btn"
-            src={Lock}
-            alt="unlock item"
-            onClick={() => setLocked(false)}
+            src={Trash}
+            alt="delete item"
+            onClick={handleDelete}
           />
-        ) : (
-          <img
-            className="hover-btn"
-            src={Unlock}
-            alt="lock item"
-            onClick={() => setLocked(true)}
-          />
-        )}
+          {locked ? (
+            <img
+              className="hover-btn"
+              src={Lock}
+              alt="unlock item"
+              onClick={() => setLocked(false)}
+            />
+          ) : (
+            <img
+              className="hover-btn"
+              src={Unlock}
+              alt="lock item"
+              onClick={() => setLocked(true)}
+            />
+          )}
+        </div>
       </div>
-      <img src={image} alt={alt} />
+      <img src={image} alt={desc} />
       {locked && <img src={Lock} alt="lock indicator" className="lock" />}
     </div>
   );

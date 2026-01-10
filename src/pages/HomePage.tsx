@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import ClothingCarousel from "../components/ClothingCarousel";
 import type { ClothingItem } from "../types/clothing";
 import { useState, useEffect } from "react";
-import { addData, getAllItems } from "../utils/db";
+import { addData, deleteClothingCascade, getAllItems } from "../utils/db";
 import { type Season } from "../types/clothing";
 import type { Outfit } from "../types/outfit";
 import { BounceLoader } from "react-spinners";
@@ -21,7 +21,8 @@ export default function HomePage() {
   const [loading, setLoading] = useState<boolean>(true);
   const [top, setTop] = useState<number>(0);
   const [bottom, setBottom] = useState<number>(0);
-  const [modal, setModal] = useState<boolean>(false);
+  const [outfitSave, setOutfitSave] = useState<boolean>(false);
+  const [deleted, setDeleted] = useState<boolean>(false);
 
   useEffect(() => {
     async function loadClothes() {
@@ -43,7 +44,11 @@ export default function HomePage() {
   useEffect(() => {
     setTop(tops.length === 1 ? 0 : 1);
     setBottom(bottoms.length === 1 ? 0 : 1);
-  }, [tops.length, bottoms.length]);
+    console.log(season, top, bottom);
+  }, [season, tops.length, bottoms.length]);
+
+  const clampIndex = (index: number, arrLength: number) =>
+  Math.max(0, Math.min(index, arrLength - 1));
 
   const addOutfit = async () => {
     const topID = tops[top].id;
@@ -56,7 +61,20 @@ export default function HomePage() {
     const newFit: Outfit = { itemIDs: [topID, bottomID] };
     await addData(newFit, "outfits");
 
-    setModal(true);
+    setOutfitSave(true);
+  };
+
+  const handleDelete = async (item: ClothingItem) => {
+    const id = item.id as number;
+    console.log(id);
+    await deleteClothingCascade(id);
+    setClothes((prev) => {
+      const updated = prev.filter((c) => c.id !== id);
+      setTop(clampIndex(top, tops.length - 1));
+      setBottom(clampIndex(bottom, bottoms.length - 1));      
+      return updated;
+    });
+    setDeleted(true);
   };
 
   if (loading) {
@@ -69,23 +87,35 @@ export default function HomePage() {
 
   return (
     <div>
-      {modal && (
+      {outfitSave && (
         <Modal
           text="Outfit successfully saved"
-          onClose={() => setModal(false)}
+          onClose={() => setOutfitSave(false)}
+        />
+      )}
+      {deleted && (
+        <Modal
+          text={"Clothing item successfully deleted"}
+          onClose={() => setDeleted(false)}
         />
       )}
       <Header season={season} page="home" setSeason={setSeason} />
       <div className="page-container">
         <div className="clothes-container">
           {tops.length > 0 && (
-            <ClothingCarousel clothes={tops} index={top} setIndex={setTop} />
+            <ClothingCarousel
+              clothes={tops}
+              index={top}
+              setIndex={setTop}
+              onDelete={handleDelete}
+            />
           )}
           {bottoms.length > 0 && (
             <ClothingCarousel
               clothes={bottoms}
               index={bottom}
               setIndex={setBottom}
+              onDelete={handleDelete}
             />
           )}
         </div>

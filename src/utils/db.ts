@@ -90,7 +90,7 @@ export const getItem = async <T>(
 };
 
 // Delete item with matching id
-export const deleteItem = async <T>(
+export const deleteItem = async (
   storeName: string,
   id: IDBValidKey,
 ): Promise<void> => {
@@ -103,4 +103,34 @@ export const deleteItem = async <T>(
   request.onerror = (event) => {
     console.error(`Error deleting item: ${(event.target as IDBRequest).error}`);
   };
+};
+
+export const deleteClothingCascade = async (clothingId: number) => {
+  const db = await openDB();
+
+  return new Promise<void>((resolve, reject) => {
+    const tx = db.transaction(["clothes", "outfits"], "readwrite");
+    const clothesStore = tx.objectStore("clothes");
+    const outfitsStore = tx.objectStore("outfits");
+
+    // Delete clothing item
+    clothesStore.delete(clothingId);
+
+    // Delete outfits that reference it
+    const cursorReq = outfitsStore.openCursor();
+
+    cursorReq.onsuccess = (e) => {
+      const cursor = (e.target as IDBRequest<IDBCursorWithValue>).result;
+      if (!cursor) return;
+
+      const outfit = cursor.value;
+      if (outfit.itemIDs.includes(clothingId)) {
+        cursor.delete();
+      }
+      cursor.continue();
+    };
+
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
+  });
 };

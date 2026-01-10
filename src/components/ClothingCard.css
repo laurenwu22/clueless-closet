@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+
 .center-photo {
   position: relative;
   display: flex;
@@ -6,6 +8,7 @@
   border-radius: 12px;
   background: #dde4eb;
   box-shadow: 0 4px 11.2px 4px rgba(0, 0, 0, 0.25);
+  flex-wrap: wrap;
 
   img {
     object-fit: cover;
@@ -16,6 +19,14 @@
 
   .overlay {
     border-radius: 12px;
+    flex-direction: column;
+    place-content: flex-start;
+    padding-top: 24px;
+  }
+
+  .overlay-actions {
+    display: flex;
+    gap: 16px;
   }
 
   .hover-btn {
@@ -35,5 +46,17 @@
     position: absolute;
     z-index: 0;
     margin: 4px 0 0 4px;
+  }
+
+  .desc {
+    display: flex;
+    width: 80%;
+    color: #1b263b;
+    text-align: center;
+    font-family: "DM Sans";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    justify-content: center;
   }
 }

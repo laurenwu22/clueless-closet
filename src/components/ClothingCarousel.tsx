@@ -11,12 +11,14 @@ interface CarouselProps {
   index: number;
   setIndex: React.Dispatch<React.SetStateAction<number>>;
   locked?: boolean;
+  onDelete: (item: ClothingItem) => void;
 }
 
 export default function ClothingCarousel({
   clothes,
   index,
   setIndex,
+  onDelete,
 }: CarouselProps) {
   // State var to track current clothing index
   const numClothes: number = clothes.length;
@@ -42,6 +44,12 @@ export default function ClothingCarousel({
     );
   }
 
+  const handleClick = (newIndex: number) => {
+    if (!locked) {
+      setIndex(newIndex);
+    }
+  };
+
   return (
     <div className="carousel-container">
       {index > 0 && !locked ? (
@@ -58,7 +66,7 @@ export default function ClothingCarousel({
         <img
           className="side-photo"
           src={urls[index - 1]}
-          onClick={() => setIndex(index - 1)}
+          onClick={() => handleClick(index - 1)}
           alt={clothes[index - 1].name}
         />
       ) : (
@@ -67,16 +75,17 @@ export default function ClothingCarousel({
 
       <ClothingCard
         image={urls[index]}
-        alt={clothes[index].name}
+        desc={clothes[index].name}
         locked={locked}
         setLocked={setLocked}
+        handleDelete={() => onDelete(clothes[index])}
       />
 
       {index < numClothes - 1 ? (
         <img
           className="side-photo"
           src={urls[index + 1]}
-          onClick={() => setIndex(index + 1)}
+          onClick={() => handleClick(index + 1)}
           alt={clothes[index + 1].name}
         />
       ) : (

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import "./OutfitPanel.css";
 import { BounceLoader } from "react-spinners";
 import Trash from "../images/trash.svg";
+import { deleteItem } from "../utils/db";
 
 interface OutfitPanelProps {
   id: number;
