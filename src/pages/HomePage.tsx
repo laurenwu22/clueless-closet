@@ -21,6 +21,7 @@ export default function HomePage() {
   const [loading, setLoading] = useState<boolean>(true);
   const [top, setTop] = useState<number>(0);
   const [bottom, setBottom] = useState<number>(0);
+  const [modal, setModal] = useState<boolean>(false);
 
   useEffect(() => {
     async function loadClothes() {
@@ -55,7 +56,7 @@ export default function HomePage() {
     const newFit: Outfit = { itemIDs: [topID, bottomID] };
     await addData(newFit, "outfits");
 
-    console.log("Outfit succesfully submitted with", topID, bottomID);
+    setModal(true);
   };
 
   if (loading) {
@@ -68,7 +69,9 @@ export default function HomePage() {
 
   return (
     <div>
-        <Modal />
+      {modal &&
+        <Modal text="Outfit successfully saved" onClose={() => setModal(false)}/>
+      }
       <Header season={season} page="home" setSeason={setSeason} />
       <div className="page-container">
         <div className="clothes-container">

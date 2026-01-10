@@ -8,6 +8,7 @@ import { Seasons } from "./HomePage";
 import { BounceLoader } from "react-spinners";
 import OutfitPanel from "../components/OutfitPanel";
 import { deleteItem } from "../utils/db";
+import Modal from "../components/Modal";
 
 export default function AllOutfits() {
   const [outfits, setOutfits] = useState<Outfit[]>([]);
@@ -17,6 +18,7 @@ export default function AllOutfits() {
   const month: number = new Date().getMonth();
   const currSzn: number = Math.floor(month / 3);
   const [season, setSeason] = useState<Season>(Seasons[currSzn]);
+  const [modal, setModal] = useState<boolean>(false);
 
   useEffect(() => {
     async function loadOutfits() {
@@ -31,6 +33,7 @@ export default function AllOutfits() {
   const handleDelete = async (id: number) => {
     await deleteItem("outfits", id);
     setOutfits(prev => prev.filter(outfit => outfit.id !== id));
+    setModal(true);
   };
 
   /* Return loading page while clothes have not loaded */
@@ -45,6 +48,9 @@ export default function AllOutfits() {
 
   return (
     <div>
+        {modal &&
+        <Modal text="Outfit successfully deleted" onClose={() => setModal(false)}/>
+        }
       <Header page="home" season={season} setSeason={setSeason} />
       <div className="outfit-row">
         {outfits.map((outfit) => (
